@@ -8,7 +8,7 @@ My dotfiles for bash, vim, gem, rspec, git, etc.
 
 ```bash
 cd
-git clone https://github.com/nyjt/dotfiles
+git clone https://github.com/nyjt/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
