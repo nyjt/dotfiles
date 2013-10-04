@@ -5,7 +5,7 @@ function _dotfile_create_symlink {
   then 
     return -1
   fi
-
+  
   from=$1
   if [ -z $2 ]
   then
@@ -13,10 +13,10 @@ function _dotfile_create_symlink {
   else 
     to=$2 
   fi 
-
+  
   if [ -e ~/$to ]
   then
-    mv ~/$to ~/$to.old
+    mv ~/$to ~/$to.old-`date +%Y%m%d-%H%M%S`
   fi
 
   echo -n "Creating symlink for $from ... "
