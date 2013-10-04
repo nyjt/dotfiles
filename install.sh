@@ -23,7 +23,7 @@ function _dotfile_create_symlink {
   ln -s ~/dotfiles/$from ~/$to && echo 'OK' || echo 'ERROR'
 }
 
-for file_name in profile vimrc gemrc gitignore rspec
+for file_name in profile vimrc gemrc gitignore rspec bashrc
 do
   _dotfile_create_symlink $file_name
 done
