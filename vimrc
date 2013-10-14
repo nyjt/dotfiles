@@ -1,11 +1,11 @@
 set enc=utf-8 
 set ts=2 
 set expandtab 
-"set number 
+set number
  
 " vim 7.3 only 
-"set undofile 
-"set undodir=$TEMP 
+set undofile 
+set undodir=$TEMP 
 set encoding=utf-8 
 set fileencoding=utf-8 
  
