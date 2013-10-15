@@ -7,9 +7,13 @@ function _git_prompt {
 
   local PROMPT=""
 
+  # hostname
+  PROMPT=$PROMPT"$white\h@"
+
   # Working directory
   PROMPT=$PROMPT"$GREEN\w"
-
+ 
+ 
   # Git-specific
   local GIT_STATUS=$(git status 2> /dev/null)
   if [ -n "$GIT_STATUS" ] # Are we in a git directory?
