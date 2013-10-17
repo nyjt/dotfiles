@@ -23,8 +23,10 @@ function _dotfile_create_symlink {
   ln -s ~/dotfiles/$from ~/$to && echo 'OK' || echo 'ERROR'
 }
 
-for file_name in profile vimrc gemrc gitignore rspec bashrc rubocop.yml
+for file_name in profile vimrc gemrc gitignore_global rspec bashrc rubocop.yml
 do
   _dotfile_create_symlink $file_name
 done
+
+git config --global core.excludesfile ~/.gitignore_global
 
