@@ -9,6 +9,7 @@ set fileencoding=utf-8
 set list
 set listchars=trail:·,precedes:«,extends:»,eol:\ ,tab:▸\ 
 set cursorline
+set shiftwidth=2
 
 if has("autocmd") 
   " Drupal *.module and *.install files.
