@@ -18,7 +18,14 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 alias gst='git status'
 alias gdf='git diff --color'
-alias gta='git add '
+alias gta='git add'
+
+if [ -e /usr/share/terminfo/x/xterm+256color ]
+then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
 
 source ~/dotfiles/git-prompt.sh
 
