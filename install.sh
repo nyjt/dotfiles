@@ -2,7 +2,7 @@
 if [ -z $1 ]
 then
   dotfiles_path=`pwd`
-end
+fi
 
 function _dotfile_create_symlink {
   if [ -z $1 ]
@@ -36,6 +36,8 @@ do
   _dotfile_create_symlink $file_name
 done
 
+git submodule init
+git submodule update
 
 curl -Sso ~/.vim/autoload/pathogen.vim \
   https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
