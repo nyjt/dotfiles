@@ -44,7 +44,7 @@ nmap <leader>cp :let @" = expand("%:p")<cr><cr>execute pathogen#infect('bundle/{
 
 if has("autocmd")
   " Drupal *.module and *.install files.
-  augroup module
+  augroup drupal
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
@@ -58,6 +58,10 @@ if has("autocmd")
     else
       autocmd BufWinEnter * call ResCur()
     endif
+  augroup END
+
+  augroup after_save
+    autocmd BufWritePost * redraw!
   augroup END
 endif
 
