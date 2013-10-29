@@ -23,6 +23,11 @@ set nobackup
 set nowb
 set noswapfile
 
+" better search in current file
+set ignorecase
+set smartcase
+set incsearch
+
 " no wrap
 set nowrap
 set textwidth=0
