@@ -59,10 +59,6 @@ if has("autocmd")
       autocmd BufWinEnter * call ResCur()
     endif
   augroup END
-
-  augroup after_save
-    autocmd BufWritePost * redraw!
-  augroup END
 endif
 
 syntax on
