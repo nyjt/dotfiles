@@ -8,6 +8,9 @@ colorscheme jellybeans
 let mapleader = ","
 let g:ctrlp_map = '<c-p>'
 set enc=utf-8
+set ai
+set lazyredraw
+set noerrorbells
 set tabstop=2
 set expandtab
 set number
