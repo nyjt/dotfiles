@@ -44,5 +44,6 @@ curl -Sso ~/.vim/autoload/pathogen.vim \
 
 git config --global core.excludesfile ~/.gitignore_global
 
-rm $dotfiles_path/vim/colors/sampler-pack/colors/solarized.vim
+solarized_color_file=$dotfiles_path/vim/colors/sampler-pack/colors/solarized.vim
+[ -e $solarized_color_file ] && rm $solarized_color_file
 
