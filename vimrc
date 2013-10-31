@@ -67,8 +67,9 @@ endif
 
 syntax on
 
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
 let g:NERDTreeWinPos = "right"
+nnoremap <space> :NERDTreeTabsToggle<CR>
 
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
