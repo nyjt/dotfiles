@@ -3,8 +3,6 @@ call pathogen#helptags()
 set t_Co=256
 set bg=dark
 colorscheme jellybeans
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
 let mapleader = ","
 let g:ctrlp_map = '<c-p>'
 set enc=utf-8
@@ -40,10 +38,18 @@ set wrapmargin=0
 vmap <C-C> "*y
 
 " <Ctrl-A> -- visually select all and copy to system clipboard
-map <C-A> ggvG$"*y<C-o><C-o>
+nmap <C-A> ggvG$"*y<C-o><C-o>
 
 " ,cp copies path to clipboard
-nmap <leader>cp :let @" = expand("%:p")<cr><cr>execute pathogen#infect('bundle/{}', 'colors/{}')
+nmap <leader>cp :let @" = expand("%:p")<cr><cr>
+
+" <Ctrl-Backspace> delete the previous word
+imap <C-BS> <C-W>
+
+set undofile
+set undodir=/tmp/$USER/.vimundo
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
 
 if has("autocmd")
   " Drupal *.module and *.install files.

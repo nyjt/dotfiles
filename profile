@@ -29,3 +29,5 @@ fi
 
 source ~/dotfiles/git-prompt.sh
 
+mkdir -p /tmp/$USER/.vimundo
+
