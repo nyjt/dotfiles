@@ -43,8 +43,13 @@ nmap <C-A> ggvG$"*y<C-o><C-o>
 " ,cp copies path to clipboard
 nmap <leader>cp :let @" = expand("%:p")<cr><cr>
 
-" <Ctrl-Backspace> delete the previous word
-imap <C-BS> <C-W>
+if has('gui_running')
+  set guioptions-=T  " no toolbar
+  set guioptions-=r
+  set guioptions-=L
+  " <Ctrl-Backspace> delete the previous word
+  imap <C-BS> <C-W>
+endif
 
 set undofile
 set undodir=/tmp/$USER/.vimundo
