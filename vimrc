@@ -2,6 +2,12 @@ execute pathogen#infect('bundle/{}', 'colors/{}')
 call pathogen#helptags()
 set t_Co=256
 set bg=dark
+let g:jellybeans_background_color_256=232
+let g:jellybeans_background_color="080808"
+let g:jellybeans_overrides = {
+  \ 'LineNr': { 'guifg': '605958', 'guibg': '000000', 'ctermfg': 'Grey', 'ctermbg': '', 'attr': 'none' },
+  \ 'CursorLineNr': { 'guifg': 'ccc5c4', 'guibg': '323232', 'ctermfg': 'White', 'ctermbg': '', 'attr': 'none' },
+\}
 colorscheme jellybeans
 let mapleader = ","
 let g:ctrlp_map = '<c-p>'
@@ -50,6 +56,23 @@ if has('gui_running')
   " <Ctrl-Backspace> delete the previous word
   imap <C-BS> <C-W>
 endif
+
+" visual mode with shift
+imap <S-End> <C-[>v$
+imap <S-Home> <C-[>v^
+imap <S-Right> <C-[>v<Right>
+imap <S-Left> <C-[>v<Left>
+imap <S-Down> <C-[>v<Down>
+imap <S-Up> <C-[>v<Up>
+nmap <S-End> <C-[>v$
+nmap <S-Home> <C-[>v^
+nmap <S-Right> <C-[>v<Right>
+nmap <S-Left> <C-[>v<Left>
+nmap <S-Down> <C-[>v<Down>
+nmap <S-Up> <C-[>v<Up>
+vmap <S-Down> <Down>
+vmap <S-Up> <Up>
+vmap <BS> d
 
 set undofile
 set undodir=/tmp/$USER/.vimundo
