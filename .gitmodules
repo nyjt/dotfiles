@@ -19,18 +19,12 @@
 [submodule "vim/colors/github"]
 	path = vim/colors/github
 	url = https://github.com/telamon/vim-color-github.git
-[submodule "vim/colors/sampler-pack"]
-	path = vim/colors/sampler-pack
-	url = https://github.com/vim-scripts/Colour-Sampler-Pack.git
 [submodule "vim/colors/getafe"]
 	path = vim/colors/getafe
 	url = https://github.com/larssmit/vim-getafe.git
 [submodule "vim/colors/irblack"]
 	path = vim/colors/irblack
 	url = https://github.com/twerth/ir_black.git
-[submodule "vim/colors/janus"]
-	path = vim/colors/janus
-	url = https://github.com/TechnoGate/janus-colors
 [submodule "vim/colors/molokai"]
 	path = vim/colors/molokai
 	url = https://github.com/vim-scripts/molokai
@@ -76,3 +70,4 @@
 [submodule "vim/bundle/endwise"]
 	path = vim/bundle/endwise
 	url = https://github.com/tpope/vim-endwise
+
