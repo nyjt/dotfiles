@@ -72,6 +72,8 @@ nmap <S-Down> <C-[>v<Down>
 nmap <S-Up> <C-[>v<Up>
 vmap <S-Down> <Down>
 vmap <S-Up> <Up>
+vmap <S-Left> <Left>
+vmap <S-Right> <Right>
 vmap <BS> d
 
 set undofile
@@ -130,4 +132,14 @@ if has("folding")
     endif
   endfunction
 endif
+
+" split buffer navigation using <ctrl-arrow>
+inoremap <C-Left> <C-[><C-w><Left>
+inoremap <C-Right> <C-[><C-w><Right>
+inoremap <C-Down> <C-[><C-w><Down>
+inoremap <C-Up> <C-[><C-w><Up>
+nnoremap <C-Left> <C-w><Left>
+nnoremap <C-Right> <C-w><Right>
+nnoremap <C-Down> <C-w><Down>
+nnoremap <C-Up> <c-w><Up>
 
