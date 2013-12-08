@@ -53,6 +53,7 @@ if has('gui_running')
   set guioptions-=T  " no toolbar
   set guioptions-=r
   set guioptions-=L
+  set guioptions-=m
   " <Ctrl-Backspace> delete the previous word
   imap <C-BS> <C-W>
 endif
