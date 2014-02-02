@@ -18,8 +18,6 @@ set noerrorbells
 set tabstop=2
 set expandtab
 set number
-set undofile
-set undodir=$TEMP
 set encoding=utf-8
 set fileencoding=utf-8
 set list
@@ -77,10 +75,13 @@ vmap <S-Left> <Left>
 vmap <S-Right> <Right>
 vmap <BS> d
 
-set undofile
-set undodir=/tmp/$USER/.vimundo
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
+if version > 703
+  set undofile
+  set undodir=/tmp/$USER/.vimundo
+  set undolevels=1000         " How many undos
+  set undoreload=10000        " number of lines to save for undo
+  set cryptmethod=blowfish
+endif
 
 if has("autocmd")
   " Drupal *.module and *.install files.
