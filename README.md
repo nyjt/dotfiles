@@ -12,6 +12,13 @@ cd dotfiles
 ./install.sh
 ```
 
+## On Ubuntu
+
+```bash
+./ubuntu-laptop-install.sh
+```
+
+
 ### Updating
 
 ```
@@ -19,3 +26,4 @@ cd ~/dotfiles
 git pull origin master
 ./install.sh
 ```
+
