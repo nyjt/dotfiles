@@ -70,4 +70,6 @@
 [submodule "vim/bundle/endwise"]
 	path = vim/bundle/endwise
 	url = https://github.com/tpope/vim-endwise
-
+[submodule "vim/bundle/mql4"]
+	path = vim/bundle/mql4
+	url = https://github.com/phaubos/vim-mql4.git
