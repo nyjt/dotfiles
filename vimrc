@@ -11,6 +11,16 @@ let g:jellybeans_overrides = {
 colorscheme jellybeans
 let mapleader = ","
 let g:ctrlp_map = '<c-p>'
+let g:ctrlp_abbrev = {
+    \ 'gmode': 't',
+    \ 'abbrevs': [
+        \ {
+        \ 'pattern': '\(^@.\+\|\\\@<!:.\+\)\@<! ',
+        \ 'expanded': '_',
+        \ 'mode': 'pfrz',
+        \ },
+        \ ]
+    \ }
 set enc=utf-8
 set ai
 set lazyredraw
