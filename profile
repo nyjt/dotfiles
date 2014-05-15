@@ -18,7 +18,11 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 alias gst='git status'
 alias gdf='git diff --color'
-alias gta='git add'
+alias gdc='git diff --color --cached'
+alias ga='git add'
+alias gaa='git add .'
+alias gcm='git commit -m'
+alias gcma='git commit -am'
 
 if [ -e /usr/share/terminfo/x/xterm+256color ]
 then
