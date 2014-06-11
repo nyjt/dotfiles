@@ -9,8 +9,15 @@
 #umask 022
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]
+then
+  PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/Downloads/RubyMine/bin" ]
+then
+  PATH="$HOME/Downloads/RubyMine/bin:$PATH"
+#  chmod +x "$HOME/RubyMine/bin/rubymine.sh"
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
