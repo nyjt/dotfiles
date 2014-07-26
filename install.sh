@@ -26,6 +26,7 @@ function _dotfile_create_symlink {
       mv ~/$to ~/$to.old-`date +%Y%m%d-%H%M%S`
     fi
     echo -n "Creating symlink for $from ... "
+    rm ~/$to
     ln -s $dotfiles_path/$from ~/$to && echo 'OK' || echo 'ERROR'
   fi
 }
