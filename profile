@@ -17,11 +17,10 @@ fi
 if [ -d "$HOME/Downloads/RubyMine/bin" ]
 then
   PATH="$HOME/Downloads/RubyMine/bin:$PATH"
-#  chmod +x "$HOME/RubyMine/bin/rubymine.sh"
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
 
 alias gst='git status'
 alias gdf='git diff --color'
@@ -39,7 +38,8 @@ else
   export TERM='xterm-color'
 fi
 
-source ~/dotfiles/git-prompt.sh
+source ~/.git-prompt.bash
+source ~/.git-completion.bash
 
 mkdir -p /tmp/$USER/.vimundo
 
