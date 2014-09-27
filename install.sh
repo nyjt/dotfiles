@@ -46,13 +46,6 @@ echo 'Installing pathogen.vim.'
 curl -Sso ~/.vim/autoload/pathogen.vim \
   https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
-if [ `uname` = 'Darwin' ]
-then
-  echo 'Mac OS X detected...'
-  echo 'Installing git-completion.bash is requered your password'
-  sudo cp git-completion.bash /usr/local/etc/bash_completion.d/
-fi
-
 echo 'Setting global gitignore as ~/.gitignore_global.'
 git config --global core.excludesfile ~/.gitignore_global
 
