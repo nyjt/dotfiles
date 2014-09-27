@@ -33,7 +33,7 @@ function _dotfile_create_symlink {
 
 echo 'Creating missing symlinks.'
 _dotfile_create_symlink vim
-for file_name in profile vimrc gemrc gitignore_global rspec bashrc rubocop.yml
+for file_name in profile vimrc gemrc git-promt.bash git-completion.bash gitignore_global rspec bashrc rubocop.yml
 do
   _dotfile_create_symlink $file_name
 done
@@ -46,5 +46,31 @@ echo 'Installing pathogen.vim.'
 curl -Sso ~/.vim/autoload/pathogen.vim \
   https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
+if [ `uname` = 'Darwin' ]
+then
+  echo 'Mac OS X detected...'
+  echo 'Installing git-completion.bash is requered your password'
+  sudo cp git-completion.bash /usr/local/etc/bash_completion.d/
+fi
+
 echo 'Setting global gitignore as ~/.gitignore_global.'
 git config --global core.excludesfile ~/.gitignore_global
+
+echo 'Setting global editor to vim'
+git config --global core.editor vim
+
+echo 'Setting aliases:'
+echo 'git co = git checkout'
+git config --global alias.co checkout
+echo 'git ci = git commit'
+git config --global alias.ci commit
+echo 'git st = git status'
+git config --global alias.st status
+echo 'git br = git branch'
+git config --global alias.br branch
+echo 'git last = git log -1 HEAD'
+git config --global alias.last 'log -1 HEAD'
+echo 'git unstage = git reset HEAD --'
+git config --global alias.unstage 'reset HEAD --'
+echo 'git restore = git checkout --'
+git config --global alias.restore 'checkout --'
