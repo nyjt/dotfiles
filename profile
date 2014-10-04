@@ -7,7 +7,7 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
-
+export LC_ALL=en_US.UTF-8
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]
 then
