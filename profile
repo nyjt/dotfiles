@@ -29,6 +29,7 @@ alias ga='git add'
 alias gaa='git add .'
 alias gcm='git commit -m'
 alias gcma='git commit -am'
+alias less='less -R'
 alias tmux='tmux -2'
 
 if [ -e /usr/share/terminfo/x/xterm+256color ]
