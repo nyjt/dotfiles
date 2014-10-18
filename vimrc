@@ -66,6 +66,12 @@ if has('gui_running')
   imap <C-BS> <C-W>
 endif
 
+" go to first/last char of current line maps
+imap <C-E> <ESC>$i<Right>
+imap <C-A> <ESC>^i
+nmap <C-E> $
+nmap <C-A> ^
+
 " visual mode with shift
 imap <S-End> <C-[>v$
 imap <S-Home> <C-[>v^
