@@ -44,3 +44,9 @@ source ~/.git-completion.bash
 
 mkdir -p /tmp/$USER/.vimundo
 
+MYSQL=/usr/local/mysql/bin
+if [ -e $MYSQL ]
+then
+  export PATH=$PATH:$MYSQL
+  export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+fi
