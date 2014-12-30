@@ -9,6 +9,9 @@ let g:jellybeans_overrides = {
   \ 'CursorLineNr': { 'guifg': 'ccc5c4', 'guibg': '323232', 'ctermfg': 'White', 'ctermbg': '', 'attr': 'none' },
 \}
 colorscheme jellybeans
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_powerline_fonts = 1
 let mapleader = ","
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_abbrev = {
@@ -116,11 +119,18 @@ if has("autocmd")
       autocmd BufWinEnter * call ResCur()
     endif
   augroup END
+
+  augroup sessionMng
+    autocmd BufWritePost * :mksession! saved_session.vim
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable("saved_session.vim") | :source saved_session.vim | endif
+  augroup END
 endif
 
 syntax on
 
 let g:nerdtree_tabs_open_on_console_startup=0
+let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:nerdtree_tabs_open_on_new_tab = 0
 let g:NERDTreeWinPos = "right"
 nnoremap <space> :NERDTreeTabsToggle<CR>
 

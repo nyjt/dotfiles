@@ -57,3 +57,4 @@ target/
 .idea
 tags
 .svn
+saved_session.vim
