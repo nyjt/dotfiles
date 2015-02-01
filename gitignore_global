@@ -60,4 +60,5 @@ tags
 *.vim
 .rvmrc
 .powrc
+.ackrc
 *_db.sh

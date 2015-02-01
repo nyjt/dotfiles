@@ -33,7 +33,7 @@ function _dotfile_create_symlink {
 
 echo 'Creating missing symlinks.'
 _dotfile_create_symlink vim
-for file_name in profile vimrc gemrc git-prompt.bash git-completion.bash gitignore_global rspec bashrc rubocop.yml
+for file_name in profile vimrc gemrc git-prompt.bash git-completion.bash gitignore_global rspec bashrc rubocop.yml ackrc
 do
   _dotfile_create_symlink $file_name
 done
