@@ -124,6 +124,7 @@ if has("autocmd")
     autocmd BufWritePost * :mksession! saved_session.vim
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable("saved_session.vim") | :source saved_session.vim | endif
   augroup END
+  autocmd BufWritePre * :%s/\s\+$//e
 endif
 
 syntax on
