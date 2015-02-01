@@ -57,4 +57,7 @@ target/
 .idea
 tags
 .svn
-saved_session.vim
+*.vim
+.rvmrc
+.powrc
+*_db.sh
