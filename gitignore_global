@@ -62,3 +62,9 @@ tags
 .powrc
 .ackrc
 *_db.sh
+pull.sh
+push.sh
+merge_master.sh
+deploy.sh
+plan.txt
+todo.txt
