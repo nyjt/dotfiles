@@ -1,6 +1,5 @@
 Documentation:
   Enabled: false
 
-LineLength:
+Metrics/LineLength:
   Enabled: false
-

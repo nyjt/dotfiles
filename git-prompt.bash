@@ -12,8 +12,8 @@ function _git_prompt {
 
   # Working directory
   PROMPT=$PROMPT"$GREEN\w"
- 
- 
+
+
   # Git-specific
   local GIT_STATUS=$(git status 2> /dev/null)
   if [ -n "$GIT_STATUS" ] # Are we in a git directory?
@@ -57,7 +57,8 @@ function _git_prompt {
   # Final $ symbol
   PROMPT=$PROMPT"$BLUE\$$WHITE "
 
-  export PS1=$PROMPT
+  # export and add timestamp abow the prompt
+  export PS1="\t\n$PROMPT"
 }
 
 export PROMPT_COMMAND="_git_prompt"

@@ -16,11 +16,16 @@ fi
 
 if [ -d "$HOME/Downloads/RubyMine/bin" ]
 then
-  PATH="$HOME/Downloads/RubyMine/bin:$PATH"
+  export PATH="$HOME/Downloads/RubyMine/bin:$PATH"
+fi
+
+if [ -d '/Applications/Postgres.app/Contents/Versions/9.4/bin' ]
+then
+  export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-PATH=$PATH:$HOME/.rvm/bin
+export PATH=$PATH:$HOME/.rvm/bin
 
 alias gst='git status'
 alias gdf='git diff --color'

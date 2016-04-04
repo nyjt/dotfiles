@@ -3,7 +3,7 @@ call pathogen#helptags()
 set t_Co=256
 set bg=dark
 let g:jellybeans_background_color_256=232
-let g:jellybeans_background_color="080808"
+let g:jellybeans_background_color="181818"
 let g:jellybeans_overrides = {
   \ 'LineNr': { 'guifg': '605958', 'guibg': '000000', 'ctermfg': 'Grey', 'ctermbg': '', 'attr': 'none' },
   \ 'CursorLineNr': { 'guifg': 'ccc5c4', 'guibg': '323232', 'ctermfg': 'White', 'ctermbg': '', 'attr': 'none' },
@@ -94,6 +94,7 @@ vmap <S-Left> <Left>
 vmap <S-Right> <Right>
 vmap <BS> d
 
+" Undo feature
 if version > 703
   set undofile
   set undodir=/tmp/$USER/.vimundo
@@ -111,6 +112,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.thtml set filetype=php
   augroup END
 
+  " repositioning cursor to last edited line
   augroup resCur
     autocmd!
     if has("folding")
@@ -120,9 +122,10 @@ if has("autocmd")
     endif
   augroup END
 
+  " session restore on working directory
   augroup sessionMng
-    autocmd BufWritePost * :mksession! saved_session.vim
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable("saved_session.vim") | :source saved_session.vim | endif
+    autocmd BufWritePost * :mksession! .saved_session.vim
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable(".saved_session.vim") | :source .saved_session.vim | endif
   augroup END
   autocmd BufWritePre * :%s/\s\+$//e
 endif
@@ -162,13 +165,38 @@ if has("folding")
   endfunction
 endif
 
-" split buffer navigation using <ctrl-arrow>
-inoremap <C-Left> <C-[><C-w><Left>
-inoremap <C-Right> <C-[><C-w><Right>
-inoremap <C-Down> <C-[><C-w><Down>
-inoremap <C-Up> <C-[><C-w><Up>
-nnoremap <C-Left> <C-w><Left>
-nnoremap <C-Right> <C-w><Right>
-nnoremap <C-Down> <C-w><Down>
-nnoremap <C-Up> <c-w><Up>
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname')=~'Darwin'
+      return "mac"
+    else
+      return "linux"
+    endif
+  endif
+endfunction
+let os=GetRunningOS()
+
+if os == "mac"
+  inoremap <D-Left> <C-[><C-w><Left>
+  inoremap <D-Right> <C-[><C-w><Right>
+  inoremap <D-Down> <C-[><C-w><Down>
+  inoremap <D-Up> <C-[><C-w><Up>
+  nnoremap <D-Left> <C-w><Left>
+  nnoremap <D-Right> <C-w><Right>
+  nnoremap <D-Down> <C-w><Down>
+  nnoremap <D-Up> <c-w><Up>
+else
+  " split buffer navigation using <ctrl-arrow>
+  inoremap <C-Left> <C-[><C-w><Left>
+  inoremap <C-Right> <C-[><C-w><Right>
+  inoremap <C-Down> <C-[><C-w><Down>
+  inoremap <C-Up> <C-[><C-w><Up>
+  nnoremap <C-Left> <C-w><Left>
+  nnoremap <C-Right> <C-w><Right>
+  nnoremap <C-Down> <C-w><Down>
+  nnoremap <C-Up> <c-w><Up>
+endif
 
