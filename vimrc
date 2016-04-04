@@ -13,7 +13,7 @@ let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 let g:airline_powerline_fonts = 1
 let mapleader = ","
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<C-p>'
 let g:ctrlp_abbrev = {
     \ 'gmode': 't',
     \ 'abbrevs': [
@@ -179,17 +179,18 @@ function! GetRunningOS()
 endfunction
 let os=GetRunningOS()
 
+" split buffer navigation using <ctrl-arrow> on Linux
+" and ctrl+alt+arrow on MAC OS X
 if os == "mac"
-  inoremap <D-Left> <C-[><C-w><Left>
-  inoremap <D-Right> <C-[><C-w><Right>
-  inoremap <D-Down> <C-[><C-w><Down>
-  inoremap <D-Up> <C-[><C-w><Up>
-  nnoremap <D-Left> <C-w><Left>
-  nnoremap <D-Right> <C-w><Right>
-  nnoremap <D-Down> <C-w><Down>
-  nnoremap <D-Up> <c-w><Up>
+  inoremap <C-A-Left> <C-[><C-w><Left>
+  inoremap <C-A-Right> <C-[><C-w><Right>
+  inoremap <C-A-Down> <C-[><C-w><Down>
+  inoremap <C-A-Up> <C-[><C-w><Up>
+  nnoremap <C-A-Left> <C-w><Left>
+  nnoremap <C-A-Right> <C-w><Right>
+  nnoremap <C-A-Down> <C-w><Down>
+  nnoremap <C-A-Up> <c-w><Up>
 else
-  " split buffer navigation using <ctrl-arrow>
   inoremap <C-Left> <C-[><C-w><Left>
   inoremap <C-Right> <C-[><C-w><Right>
   inoremap <C-Down> <C-[><C-w><Down>
