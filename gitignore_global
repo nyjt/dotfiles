@@ -60,6 +60,7 @@ target/
 *.swo
 .idea
 tags
+.tags
 .svn
 *.vim
 .rvmrc
@@ -82,3 +83,5 @@ clean.sh
 log
 public/assets
 .ctags
+rails_report.html
+ruby_benchmark.rb

@@ -8,23 +8,22 @@ let g:jellybeans_overrides = {
   \ 'LineNr': { 'guifg': '605958', 'guibg': '000000', 'ctermfg': 'Grey', 'ctermbg': '', 'attr': 'none' },
   \ 'CursorLineNr': { 'guifg': 'ccc5c4', 'guibg': '323232', 'ctermfg': 'White', 'ctermbg': '', 'attr': 'none' },
 \}
+
 colorscheme jellybeans
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
+let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
-let mapleader = ","
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_abbrev = {
-    \ 'gmode': 't',
-    \ 'abbrevs': [
-        \ {
-        \ 'pattern': '\(^@.\+\|\\\@<!:.\+\)\@<! ',
-        \ 'expanded': '_',
-        \ 'mode': 'pfrz',
-        \ },
-        \ ]
-    \ }
-set enc=utf-8
+let mapleader = "\\"
+"let g:ctrlp_map = '<C-p>'
+"let g:ctrlp_abbrev = {
+"    \ 'gmode': 't',
+"    \ 'abbrevs': [
+"        \ {
+"        \ 'pattern': '\(^@.\+\|\\\@<!:.\+\)\@<! ',
+"        \ 'expanded': '_',
+"        \ 'mode': 'pfrz',
+"        \ },
+"        \ ]
+"    \ }
 set ai
 set lazyredraw
 set noerrorbells
@@ -61,6 +60,7 @@ nmap <C-A> ggvG$"*y<C-o><C-o>
 nmap <leader>cp :let @" = expand("%:p")<cr><cr>
 
 if has('gui_running')
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
   set guioptions-=T  " no toolbar
   set guioptions-=r
   set guioptions-=L
@@ -123,11 +123,11 @@ if has("autocmd")
   augroup END
 
   " session restore on working directory
-  augroup sessionMng
-    autocmd BufWritePost * :mksession! .saved_session.vim
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable(".saved_session.vim") | :source .saved_session.vim | endif
-  augroup END
-  autocmd BufWritePre * :%s/\s\+$//e
+"  augroup sessionMng
+"    autocmd BufWritePost * :mksession! .saved_session.vim
+"    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable(".saved_session.vim") | :source .saved_session.vim | endif
+"  augroup END
+"  autocmd BufWritePre * :%s/\s\+$//e
 endif
 
 syntax on
@@ -181,16 +181,34 @@ let os=GetRunningOS()
 
 " split buffer navigation using <ctrl-arrow> on Linux
 " and ctrl+alt+arrow on MAC OS X
-if os == "mac"
-  inoremap <C-A-Left> <C-[><C-w><Left>
-  inoremap <C-A-Right> <C-[><C-w><Right>
-  inoremap <C-A-Down> <C-[><C-w><Down>
-  inoremap <C-A-Up> <C-[><C-w><Up>
-  nnoremap <C-A-Left> <C-w><Left>
-  nnoremap <C-A-Right> <C-w><Right>
-  nnoremap <C-A-Down> <C-w><Down>
-  nnoremap <C-A-Up> <c-w><Up>
-else
+inoremap <C-A-Left> <C-[><C-w><Left>
+inoremap <C-A-Right> <C-[><C-w><Right>
+inoremap <C-A-Down> <C-[><C-w><Down>
+inoremap <C-A-Up> <C-[><C-w><Up>
+nnoremap <C-A-Left> <C-w><Left>
+nnoremap <C-A-Right> <C-w><Right>
+nnoremap <C-A-Down> <C-w><Down>
+nnoremap <C-A-Up> <c-w><Up>
+
+inoremap <Leader>a <C-[><C-w><Left>
+inoremap <Leader>d <C-[><C-w><Right>
+inoremap <Leader>s <C-[><C-w><Down>
+inoremap <Leader>w <C-[><C-w><Up>
+nnoremap <Leader>a <C-w><Left>
+nnoremap <Leader>d <C-w><Right>
+nnoremap <Leader>s <C-w><Down>
+nnoremap <Leader>w <c-w><Up>
+
+inoremap <Leader><Left> <C-[><C-w><Left>
+inoremap <Leader><Right> <C-[><C-w><Right>
+inoremap <Leader><Down> <C-[><C-w><Down>
+inoremap <Leader><Up> <C-[><C-w><Up>
+nnoremap <Leader><Left> <C-w><Left>
+nnoremap <Leader><Right> <C-w><Right>
+nnoremap <Leader><Down> <C-w><Down>
+nnoremap <Leader><Up> <c-w><Up>
+
+if os == "linux"
   inoremap <C-Left> <C-[><C-w><Left>
   inoremap <C-Right> <C-[><C-w><Right>
   inoremap <C-Down> <C-[><C-w><Down>

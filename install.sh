@@ -43,8 +43,13 @@ git submodule init
 git submodule update
 
 echo 'Installing pathogen.vim.'
-curl -Sso ~/.vim/autoload/pathogen.vim \
-  https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+if [ -e ~/.vim/autoload/pathogen.vim ]
+then
+  echo 'Pathogen is already installed.'
+else
+  curl -Sso ~/.vim/autoload/pathogen.vim \
+    https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+fi
 
 echo 'Setting global gitignore as ~/.gitignore_global.'
 git config --global core.excludesfile ~/.gitignore_global
