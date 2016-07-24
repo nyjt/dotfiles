@@ -26,14 +26,14 @@ function _dotfile_create_symlink {
       mv ~/$to ~/$to.old-`date +%Y%m%d-%H%M%S`
     fi
     echo -n "Creating symlink for $from ... "
-    rm ~/$to
+    rm -f ~/$to
     ln -s $dotfiles_path/$from ~/$to && echo 'OK' || echo 'ERROR'
   fi
 }
 
 echo 'Creating missing symlinks.'
 _dotfile_create_symlink vim
-for file_name in profile vimrc gemrc git-prompt.bash git-completion.bash gitignore_global rspec bashrc rubocop.yml ackrc
+for file_name in profile vimrc gemrc git-prompt.bash git-completion.bash ssh-completion.bash gitignore_global rspec bashrc rubocop.yml ackrc
 do
   _dotfile_create_symlink $file_name
 done
@@ -58,17 +58,17 @@ echo 'Setting global editor to vim'
 git config --global core.editor vim
 
 echo 'Setting aliases:'
-echo 'git co = git checkout'
+echo '  git co = git checkout'
 git config --global alias.co checkout
-echo 'git ci = git commit'
+echo '  git ci = git commit'
 git config --global alias.ci commit
-echo 'git st = git status'
+echo '  git st = git status'
 git config --global alias.st status
-echo 'git br = git branch'
+echo '  git br = git branch'
 git config --global alias.br branch
-echo 'git last = git log -1 HEAD'
+echo '  git last = git log -1 HEAD'
 git config --global alias.last 'log -1 HEAD'
-echo 'git unstage = git reset HEAD --'
+echo '  git unstage = git reset HEAD --'
 git config --global alias.unstage 'reset HEAD --'
-echo 'git restore = git checkout --'
+echo '  git restore = git checkout --'
 git config --global alias.restore 'checkout --'

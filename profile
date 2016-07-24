@@ -46,6 +46,7 @@ fi
 
 source ~/.git-prompt.bash
 source ~/.git-completion.bash
+source ~/.ssh-completion.bash
 
 mkdir -p /tmp/$USER/.vimundo
 
