@@ -22,6 +22,9 @@
 --ignore-dir=.idea/
 --ignore-dir=node_modules/
 --ignore-dir=log/
+--ignore-dir=tmp/
+--ignore-dir=coverage/
+--ignore-dir=public/
 
 #make sure ack knows how to search common filetypes used in rails projects
 --type-add=css=.scss,.sass,.less
