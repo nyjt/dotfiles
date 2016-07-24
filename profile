@@ -55,3 +55,5 @@ then
   export PATH=$PATH:$MYSQL
   export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 fi
+
+eval $(docker-machine env 2>/dev/null)
