@@ -1,5 +1,37 @@
-execute pathogen#infect('bundle/{}', 'colors/{}')
-call pathogen#helptags()
+set nocompatible
+
+let g:airline_theme='jellybeans'
+let g:airline_powerline_fonts = 1
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+
+Plug 'scrooloose/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-bundler'
+Plug 'pangloss/vim-javascript'
+Plug 'nanotech/jellybeans.vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
+Plug 'kchmck/vim-coffee-script'
+Plug 'fatih/vim-go'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-endwise'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-haml'
+Plug 'ervandew/supertab'
+Plug 'mxw/vim-jsx'
+Plug 'othree/html5.vim'
+Plug 'tpope/vim-rails'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'wakatime/vim-wakatime'
+Plug 'mileszs/ack.vim'
+
+call plug#end()
+
 set t_Co=256
 set bg=dark
 let g:jellybeans_background_color_256=232
@@ -10,9 +42,7 @@ let g:jellybeans_overrides = {
 \}
 
 colorscheme jellybeans
-let g:airline_theme='jellybeans'
-let g:airline_powerline_fonts = 1
-let mapleader = "\\"
+let mapleader = ","
 "let g:ctrlp_map = '<C-p>'
 "let g:ctrlp_abbrev = {
 "    \ 'gmode': 't',
@@ -38,23 +68,28 @@ set cursorline
 set shiftwidth=2
 set nobackup
 set nowb
+set autoread
+au CursorHold,CursorHoldI * :checktime
 set noswapfile
+set mouse=a
 
 " better search in current file
 set ignorecase
 set smartcase
 set incsearch
 
-" no wrap
-set nowrap
+" wrap
+set wrap
 set textwidth=0
 set wrapmargin=0
+set breakindent
+set showbreak=\ \ " two space, and this is a comment... space cannot be the last char in a line
 
 " <Ctrl-C> -- copy selected to system clipboard (see: http://vim.wikia.com/wiki/Quick_yank_and_paste)
-vmap <C-C> "*y
+vmap <M-C> "*y
 
 " <Ctrl-A> -- visually select all and copy to system clipboard
-nmap <C-A> ggvG$"*y<C-o><C-o>
+nmap <M-A> ggvG$"*y<C-o><C-o>
 
 " ,cp copies path to clipboard
 nmap <leader>cp :let @" = expand("%:p")<cr><cr>
@@ -132,11 +167,8 @@ endif
 
 syntax on
 
-let g:nerdtree_tabs_open_on_console_startup=0
-let g:nerdtree_tabs_open_on_gui_startup = 0
-let g:nerdtree_tabs_open_on_new_tab = 0
-let g:NERDTreeWinPos = "right"
-nnoremap <space> :NERDTreeTabsToggle<CR>
+let g:NERDTreeWinPos = "left"
+nnoremap <C-k><C-b> :NERDTreeToggle<CR>
 
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
