@@ -1,12 +1,17 @@
 # Compiled source #
 ###################
+
+rails_best_practices_output.html
 *.com
 *.class
 *.dll
 *.exe
 *.o
 *.so
-user.txt
+*.reek
+todo.*
+coverage
+.*.sh
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
@@ -70,9 +75,6 @@ tags
 *.sublime-*
 pull.sh
 push.sh
-merge_master.sh
-start_sidekiq.sh
-deploy.sh
 plan.txt
 todo.txt
 timing.txt
@@ -83,5 +85,8 @@ clean.sh
 log
 public/assets
 .ctags
+.tags_swap
 rails_report.html
-ruby_benchmark.rb
+hidden_*
+.vscode/
+._*
