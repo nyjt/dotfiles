@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-bundler'
@@ -29,8 +30,19 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wakatime/vim-wakatime'
 Plug 'mileszs/ack.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'rizzatti/dash.vim'
+Plug 'KabbAmine/zeavim.vim', {'on': [
+      \ 'Zeavim', 'Docset',
+      \ '<Plug>Zeavim',
+      \ '<Plug>ZVVisSelection',
+      \ '<Plug>ZVKeyDocset',
+      \ '<Plug>ZVMotion'
+      \ ]}
 
 call plug#end()
+
+filetype plugin on
 
 set t_Co=256
 set bg=dark
@@ -42,7 +54,21 @@ let g:jellybeans_overrides = {
 \}
 
 colorscheme jellybeans
-let mapleader = ","
+
+" set the leader
+let mapleader = " "
+nnoremap <space> <nop>
+
+let g:ctrlp_max_files = 0 " unlimited number of files
+let g:ctrlp_custom_command = ""
+let g:ctrlp_lazy_update = 0
+unlet g:ctrlp_custom_command
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co -X .gitignore -X ~/.gitignore_global $(test -e ._vimignore && echo "-X ._vimignore")', 'find %s -type f']
+let g:user_command_async = 1
+"unlet g:ctrlp_custom_ignore
+"let g:ctrlp_custom_ignore = {
+"  \ dir: '\.git$\|\.hg$\|\.svn$\|\.idea$\|\.vscode$\|\.yardoc$\|\.docker$\|log$\|tmp$\|bower_components$\|node_modules$',
+"  \ file: '\.sql$\|\.log$\|\.js\.map$\|\.png$\|\.jpg$\|\.gif$\|\.tiff$\|\.pdf$\|\.xls$\|\.xlsx$' }
 "let g:ctrlp_map = '<C-p>'
 "let g:ctrlp_abbrev = {
 "    \ 'gmode': 't',
@@ -56,6 +82,7 @@ let mapleader = ","
 "    \ }
 set ai
 set lazyredraw
+set ttyfast
 set noerrorbells
 set tabstop=2
 set expandtab
@@ -71,7 +98,9 @@ set nowb
 set autoread
 au CursorHold,CursorHoldI * :checktime
 set noswapfile
+set ttymouse=sgr
 set mouse=a
+set backspace=2
 
 " better search in current file
 set ignorecase
@@ -84,6 +113,15 @@ set textwidth=0
 set wrapmargin=0
 set breakindent
 set showbreak=\ \ " two space, and this is a comment... space cannot be the last char in a line
+
+" remove trailing whitespaces
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " <Ctrl-C> -- copy selected to system clipboard (see: http://vim.wikia.com/wiki/Quick_yank_and_paste)
 vmap <M-C> "*y
@@ -139,14 +177,6 @@ if version > 703
 endif
 
 if has("autocmd")
-  " Drupal *.module and *.install files.
-  augroup drupal
-    autocmd BufRead,BufNewFile *.module set filetype=php
-    autocmd BufRead,BufNewFile *.install set filetype=php
-    autocmd BufRead,BufNewFile *.test set filetype=php
-    autocmd BufRead,BufNewFile *.thtml set filetype=php
-  augroup END
-
   " repositioning cursor to last edited line
   augroup resCur
     autocmd!
@@ -222,23 +252,10 @@ nnoremap <C-A-Right> <C-w><Right>
 nnoremap <C-A-Down> <C-w><Down>
 nnoremap <C-A-Up> <c-w><Up>
 
-inoremap <Leader>a <C-[><C-w><Left>
-inoremap <Leader>d <C-[><C-w><Right>
-inoremap <Leader>s <C-[><C-w><Down>
-inoremap <Leader>w <C-[><C-w><Up>
 nnoremap <Leader>a <C-w><Left>
 nnoremap <Leader>d <C-w><Right>
 nnoremap <Leader>s <C-w><Down>
 nnoremap <Leader>w <c-w><Up>
-
-inoremap <Leader><Left> <C-[><C-w><Left>
-inoremap <Leader><Right> <C-[><C-w><Right>
-inoremap <Leader><Down> <C-[><C-w><Down>
-inoremap <Leader><Up> <C-[><C-w><Up>
-nnoremap <Leader><Left> <C-w><Left>
-nnoremap <Leader><Right> <C-w><Right>
-nnoremap <Leader><Down> <C-w><Down>
-nnoremap <Leader><Up> <c-w><Up>
 
 if os == "linux"
   inoremap <C-Left> <C-[><C-w><Left>
@@ -250,4 +267,11 @@ if os == "linux"
   nnoremap <C-Down> <C-w><Down>
   nnoremap <C-Up> <c-w><Up>
 endif
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes=['help','nerdtree']
+hi IndentGuidesOdd ctermbg=black
+hi IndentGuidesEven ctermbg=233
+hi Normal ctermbg=black
+hi NonText ctermbg=black
 

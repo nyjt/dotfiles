@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/nyitrai/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 ssh-add ~/.ssh/svn_rsa
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -109,6 +109,9 @@ alias gcaa='git commit -a --amend'
 alias gcma='git commit -am'
 alias less='less -R'
 alias vi='vim'
+
+# rails generate alias override the ripgrep binary -- rg
+unalias rg
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 

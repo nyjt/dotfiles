@@ -59,6 +59,7 @@ curl -fLo $ZSH/custom/themes/bullet-train.zsh-theme http://raw.github.com/caiogo
 ### .configFiles ###
 
 echo 'Creating missing symlinks.'
+mkdir vim
 for file_name in vim vimrc gemrc gitignore_global rspec zshrc rubocop.yml ackrc tmux.conf
 do
   _dotfile_create_symlink $file_name
