@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-
+Plug 'thaerkh/vim-workspace'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -46,23 +46,27 @@ filetype plugin on
 
 set t_Co=256
 set bg=dark
-let g:jellybeans_background_color_256=232
-let g:jellybeans_background_color="181818"
+let g:jellybeans_background_color_256=0 " 232
+let g:jellybeans_background_color="000000" " 181818
 let g:jellybeans_overrides = {
-  \ 'LineNr': { 'guifg': '605958', 'guibg': '000000', 'ctermfg': 'Grey', 'ctermbg': '', 'attr': 'none' },
+  \ 'LineNr': { 'guifg': '605958', 'guibg': '000000', 'ctermfg': '234', 'ctermbg': '233', 'attr': 'none' },
   \ 'CursorLineNr': { 'guifg': 'ccc5c4', 'guibg': '323232', 'ctermfg': 'White', 'ctermbg': '', 'attr': 'none' },
 \}
 
 colorscheme jellybeans
 
 " set the leader
-let mapleader = " "
 nnoremap <space> <nop>
 
+let mapleader = " "
+
+" workspace settings
+let g:workspace_session_name = '._session.vim'
+let g:workspace_undodir='._undodir'
+nnoremap <leader>ws :ToggleWorkspace<CR>
+
 let g:ctrlp_max_files = 0 " unlimited number of files
-let g:ctrlp_custom_command = ""
-let g:ctrlp_lazy_update = 0
-unlet g:ctrlp_custom_command
+let g:ctrlp_lazy_update = 100 " don't update the list on every key press
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co -X .gitignore -X ~/.gitignore_global $(test -e ._vimignore && echo "-X ._vimignore")', 'find %s -type f']
 let g:user_command_async = 1
 "unlet g:ctrlp_custom_ignore
@@ -91,12 +95,11 @@ set encoding=utf-8
 set fileencoding=utf-8
 set list
 set listchars=trail:·,precedes:«,extends:»,eol:\ ,tab:▸\ "
-set cursorline
+set nocursorline
 set shiftwidth=2
 set nobackup
 set nowb
 set autoread
-au CursorHold,CursorHoldI * :checktime
 set noswapfile
 set ttymouse=sgr
 set mouse=a
@@ -143,7 +146,7 @@ if has('gui_running')
 endif
 
 " go to first/last char of current line maps
-imap <C-E> <ESC>$i<Right>
+imap <C-E> <ESC>$a
 imap <C-A> <ESC>^i
 nmap <C-E> $
 nmap <C-A> ^
@@ -187,12 +190,12 @@ if has("autocmd")
     endif
   augroup END
 
-  " session restore on working directory
-"  augroup sessionMng
-"    autocmd BufWritePost * :mksession! .saved_session.vim
-"    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && filereadable(".saved_session.vim") | :source .saved_session.vim | endif
-"  augroup END
-"  autocmd BufWritePre * :%s/\s\+$//e
+  " we can scroll faster in normal mode without cursorline
+  au InsertLeave * :set nocursorline
+  au InsertEnter * :set cursorline
+
+  " reload files that were modified from outside
+  au CursorHold,CursorHoldI * :checktime
 endif
 
 syntax on
@@ -227,20 +230,6 @@ if has("folding")
   endfunction
 endif
 
-function! GetRunningOS()
-  if has("win32")
-    return "win"
-  endif
-  if has("unix")
-    if system('uname')=~'Darwin'
-      return "mac"
-    else
-      return "linux"
-    endif
-  endif
-endfunction
-let os=GetRunningOS()
-
 " split buffer navigation using <ctrl-arrow> on Linux
 " and ctrl+alt+arrow on MAC OS X
 inoremap <C-A-Left> <C-[><C-w><Left>
@@ -257,7 +246,11 @@ nnoremap <Leader>d <C-w><Right>
 nnoremap <Leader>s <C-w><Down>
 nnoremap <Leader>w <c-w><Up>
 
-if os == "linux"
+if has('mac')
+  nnoremap <Leader>h :Dash<CR>
+endif
+
+if has('linux')
   inoremap <C-Left> <C-[><C-w><Left>
   inoremap <C-Right> <C-[><C-w><Right>
   inoremap <C-Down> <C-[><C-w><Down>
