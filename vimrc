@@ -102,7 +102,7 @@ set nowb
 set autoread
 set noswapfile
 set ttymouse=sgr
-set mouse=a
+set mouse=nichr
 set backspace=2
 
 " better search in current file
