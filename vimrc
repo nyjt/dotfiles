@@ -1,7 +1,7 @@
 set nocompatible
 
-let g:airline_theme='jellybeans'
-let g:airline_powerline_fonts = 1
+"let g:airline_theme='jellybeans'
+"let g:airline_powerline_fonts = 1
 
 call plug#begin('~/.vim/plugged')
 
@@ -9,26 +9,25 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'thaerkh/vim-workspace'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'w0rp/ale'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-bundler'
 Plug 'pangloss/vim-javascript'
 Plug 'nanotech/jellybeans.vim'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
-Plug 'kchmck/vim-coffee-script'
-Plug 'fatih/vim-go'
-Plug 'vim-airline/vim-airline'
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'litcoffee'] }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-endwise'
-Plug 'elzr/vim-json'
-Plug 'tpope/vim-haml'
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'ervandew/supertab'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-rails'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'wakatime/vim-wakatime'
 Plug 'mileszs/ack.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rizzatti/dash.vim'
@@ -54,42 +53,32 @@ let g:jellybeans_overrides = {
 \}
 
 colorscheme jellybeans
+let g:lightline = {
+  \ 'colorscheme': 'powerline',
+  \ }
 
 " set the leader
 nnoremap <space> <nop>
 
 let mapleader = " "
 
+" speed up the syntax checking
+let g:ale_lint_on_text_changed = 'normal'
+
 " workspace settings
 let g:workspace_session_name = '._session.vim'
 let g:workspace_undodir='._undodir'
-nnoremap <leader>ws :ToggleWorkspace<CR>
 
-let g:ctrlp_max_files = 0 " unlimited number of files
-let g:ctrlp_lazy_update = 100 " don't update the list on every key press
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co -X .gitignore -X ~/.gitignore_global $(test -e ._vimignore && echo "-X ._vimignore")', 'find %s -type f']
-let g:user_command_async = 1
-"unlet g:ctrlp_custom_ignore
-"let g:ctrlp_custom_ignore = {
-"  \ dir: '\.git$\|\.hg$\|\.svn$\|\.idea$\|\.vscode$\|\.yardoc$\|\.docker$\|log$\|tmp$\|bower_components$\|node_modules$',
-"  \ file: '\.sql$\|\.log$\|\.js\.map$\|\.png$\|\.jpg$\|\.gif$\|\.tiff$\|\.pdf$\|\.xls$\|\.xlsx$' }
-"let g:ctrlp_map = '<C-p>'
-"let g:ctrlp_abbrev = {
-"    \ 'gmode': 't',
-"    \ 'abbrevs': [
-"        \ {
-"        \ 'pattern': '\(^@.\+\|\\\@<!:.\+\)\@<! ',
-"        \ 'expanded': '_',
-"        \ 'mode': 'pfrz',
-"        \ },
-"        \ ]
-"    \ }
+nnoremap <leader>ws :ToggleWorkspace<CR>
+nnoremap <C-p> :GFiles -co -X .gitignore -X ~/.gitignore_global $(test -e ._vimignore && echo "-X ._vimignore")<CR>
+
 set ai
 set lazyredraw
 set ttyfast
 set noerrorbells
 set tabstop=2
 set expandtab
+set noshowmode " lightline shows it
 set number
 set encoding=utf-8
 set fileencoding=utf-8
@@ -101,7 +90,11 @@ set nobackup
 set nowb
 set autoread
 set noswapfile
-set ttymouse=sgr
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+endif
 set mouse=nichr
 set backspace=2
 
