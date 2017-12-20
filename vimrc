@@ -1,8 +1,5 @@
 set nocompatible
 
-"let g:airline_theme='jellybeans'
-"let g:airline_powerline_fonts = 1
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -12,6 +9,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-bundler'
 Plug 'pangloss/vim-javascript'
 Plug 'nanotech/jellybeans.vim'
@@ -24,6 +22,7 @@ Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'ervandew/supertab'
+Plug 'maralla/completor.vim'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-rails'
@@ -59,17 +58,17 @@ let g:lightline = {
 
 " set the leader
 nnoremap <space> <nop>
-
 let mapleader = " "
 
-" speed up the syntax checking
-let g:ale_lint_on_text_changed = 'normal'
+" speed up the syntax checking, check only on save
+let g:ale_lint_on_text_changed = 'never'
 
 " workspace settings
 let g:workspace_session_name = '._session.vim'
 let g:workspace_undodir='._undodir'
-
 nnoremap <leader>ws :ToggleWorkspace<CR>
+
+" fzf settings
 nnoremap <C-p> :GFiles -co -X .gitignore -X ~/.gitignore_global $(test -e ._vimignore && echo "-X ._vimignore")<CR>
 
 set ai
