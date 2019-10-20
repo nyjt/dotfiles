@@ -60,7 +60,6 @@ target/
 ###################
 *.log
 *.sqlite3
-.ruby-gemset
 *.swp
 *.swo
 .idea
@@ -90,3 +89,4 @@ rails_report.html
 hidden_*
 .vscode/
 ._*
+.ansible-vault-password

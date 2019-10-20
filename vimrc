@@ -22,7 +22,9 @@ Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'ervandew/supertab'
-Plug 'maralla/completor.vim'
+if has('python') && has('lambda')
+  Plug 'maralla/completor.vim'
+endif
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-rails'
